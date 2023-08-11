@@ -1,0 +1,40 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# https://www.playframework.com/documentation/latest/ScalaRouting
+# ~~~~
+
+# An example controller showing a sample home page
+GET     /                             controllers.HomeController.homePage
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+#User-Authentication Flow
+GET     /signIn                     controllers.HomeController.signIn(username, password)
+GET     /signUp                     controllers.HomeController.signUp(username, password)
+GET     /logout                     controllers.HomeController.logout
+
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+#Authenticated-user pages
+GET     /home                       controllers.HomeController.userHome
+GET     /comments                   controllers.HomeController.comments
+GET     /validateComment            controllers.HomeController.validateComment(postID)
+
+GET     /like                       controllers.HomeController.like
+GET     /validateLike               controllers.HomeController.validateLike(postID)
+
+GET     /Share                      controllers.HomeController.Share(postID)
+
+GET     /goToSharingPage            controllers.HomeController.goToSharingPage
+GET     /createPost                 controllers.HomeController.createPost(text, hashtag, img)
+GET     /removePost                 controllers.HomeController.removePost(PostID)
+
+GET     /goToSharingPageComment     controllers.HomeController.goToSharingPageComment
+GET     /createComment              controllers.HomeController.createComment(text, hashtag, username, id)
+
+GET     /Profile                    controllers.HomeController.Profile(hashtagOrUsername)
+GET     /MyProfile                  controllers.HomeController.MyProfile(username)
+GET     /Follow                     controllers.HomeController.Follow(username, Username)
+
+GET     /Explore                    controllers.HomeController.Explore
