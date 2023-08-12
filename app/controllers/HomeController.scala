@@ -23,7 +23,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     usernameOption.map { _ =>
       val posts = post.findAllSortedByDate
       var posts2 = post.findNotComments
-      val users = models.user.findallUsers
+      val users = models.user.findAllUsers
       var returnList : List[String] = List()
       users.foreach{ X =>
         returnList = returnList :+ X.username
@@ -56,7 +56,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
           }
         }
       }
-      val users = models.user.findallUsers
+      val users = models.user.findAllUsers
       var returnList : List[String] = List()
       users.foreach{ X =>
         returnList = returnList :+ X.username
@@ -82,7 +82,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
           x.likes = x.likes + 1
         }
       }
-      val users = models.user.findallUsers
+      val users = models.user.findAllUsers
       var returnList : List[String] = List()
       users.foreach{ X =>
         returnList = returnList :+ X.username
@@ -181,7 +181,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       }
     }
     if (T==0){
-      models.user.createUser(models.user(username, password, ListBuffer()))
+      models.user.addUser(models.user(username, password, ListBuffer()))
       Redirect(routes.HomeController.userHome).withSession("username" -> username)
     }
     else{
@@ -200,7 +200,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val usernameOption = request.session.get("username")
     var returnList : List[String] = List()
     val posts = post.findAllSortedByDate
-    val users = models.user.findallUsers
+    val users = models.user.findAllUsers
     users.foreach{ X =>
       returnList = returnList :+ X.username
     }
@@ -227,7 +227,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     val usernameOption = request.session.get("username")
     var returnList : List[String] = List()
     val posts = post.findAllSortedByDate
-    val users = models.user.findallUsers
+    val users = models.user.findAllUsers
     users.foreach{ X =>
       returnList = returnList :+ X.username
     }
@@ -251,7 +251,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
 
   def Follow(username: String, Username: String): Action[AnyContent] = Action { implicit request =>
 //    val Username = request.session.get("username").toList(0)
-    var users = models.user.findallUsers
+    var users = models.user.findAllUsers
     users.foreach { X =>
       if (Username == X.username){
         var i=0
@@ -262,8 +262,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
           i = i + 1
         }
         if(i==X.friends.length){
-          models.user.removeUser(X)
-          models.user.createUser(models.user(X.username, X.password, X.friends :+ username))
+          models.user.deleteUser(X)
+          models.user.addUser(models.user(X.username, X.password, X.friends :+ username))
           Redirect(routes.HomeController.MyProfile(Username))
         }
       }
@@ -276,7 +276,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
     usernameOption.map { username =>
       val posts = post.findAllSortedByDate
       var posts2: List[post] = List()
-      val users = models.user.findallUsers
+      val users = models.user.findAllUsers
       val USER = users.find(_.username == username).toList.head
       posts.foreach { X =>
         var i = 0

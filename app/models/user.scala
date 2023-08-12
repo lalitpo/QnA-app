@@ -17,13 +17,13 @@ object user {
     user("alex", "6735", ListBuffer())
   )
 
-  def findallUsers = users.toList
+  def findAllUsers: List[user] = users.toList
 
-  def createUser(User: user): Unit = {
+  def addUser(User: user): Unit = {
     users = users + User
   }
 
-  def removeUser(User: user): Unit = {
+  def deleteUser(User: user): Unit = {
     users = users - User
   }
 }

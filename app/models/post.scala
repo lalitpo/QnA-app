@@ -10,9 +10,11 @@ case class post(id: Int, username: String, date: DateTime, text: String, var com
                 var share: Int, hashtag: String, commentOrNot: Int, img: String)
 
 object post {
-  val datenow = DateTime.now
-  var posts = Set(
-    post(1, "Ardavan_Khalij", datenow.-(100229000), "Listen to my new music everyone :)", ListBuffer(2,3), 10, 0, "#Music", 0, "IMG_1794.png"),
+
+  val datenow: DateTime = DateTime.now
+
+  var posts: Set[post] = Set(
+    post(1, "Lalit Poddar", datenow.-(100229000), "Listen to my new music everyone :)", ListBuffer(2,3), 10, 0, "#Music", 0, "avatar.png"),
     post(2, "Shrek", datenow.-(2423422052L), "Nice", ListBuffer(), 0, 0, "#Comment", 1, "NO IMAGE"),
     post(3, "Peter Griffin", datenow.-(425254292), "Ha Ha Ha", ListBuffer(), 0, 0, "#Comment", 1, "NO IMAGE"),
     post(4, "Ardavan_Khalij", datenow.-(76254233), "Thanks for your support", ListBuffer(), 0, 0, "#Thank", 0, "NO IMAGE"),
