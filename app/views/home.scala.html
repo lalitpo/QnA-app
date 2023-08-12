@@ -51,6 +51,7 @@
             }
 
 
+
             .top-bar a {
               text-decoration: none;
               color: #fff;
@@ -191,27 +192,27 @@
   </head>
   <body>
     <div class="top-bar">
-      <a href="#">Log Out</a> |
-      <a href="#">Add Post</a>
+      <a href="logout">Log Out</a> |
+      <a href="addPost">Add Post</a>
     </div>
 
-    <div class="container">
 
         <!-- Filter and Search Box -->
       <div class="search-box">
         <input type="text" placeholder="Search by tags...">
       </div>
-        <div class="sorting-tab">
-            <label for="sorting">Sort By:</label>
-            <select id="sorting">
-                <option value="date">Date</option>
-                <option value="votes">Votes</option>
-            </select>
-        </div>
+      <div class="sorting-tab">
+          <label for="sorting">Sort By:</label>
+          <select id="sorting">
+              <option value="date">Date</option>
+              <option value="votes">Votes</option>
+          </select>
+      </div>
+      <div class="posts-container">
 
         <!-- Published Posts -->
-      <div class="post" data-upload-date="2023-07-25">
-          <div class="post-date">Added on: July 25, 2023</div>
+        <div class="post" data-upload-date="2023-08-01">
+          <div class="post-date">Added on: <span class="dynamic-date"></span></div>
 
           <div class="votes">25 votes</div>
         <div class="post-content">
@@ -241,19 +242,18 @@
             <!-- Text -->
           <p>Additional text content...</p>
             <div class="tags">
-                <span class="tag highlight-tag">Tag 1</span>
-                <span class="tag highlight-tag">Tag 2</span>
-                <span class="tag highlight-tag">Tag 3</span>
+                <span class="tag highlight-tag">python</span>
+                <span class="tag highlight-tag">webscraping</span>
             </div>
 
         </div>
-          <button class="expand-button">
+          <button class="expand-button" onclick="openPostDetailPage()">
               <i class="fas fa-expand expand-icon"></i>
           </button>
       </div>
 
-        <div class="post" data-upload-date="2023-08-01">
-            <div class="post-date">Added on: August 1, 2023</div>
+        <div class="post" data-upload-date="2023-07-25">
+            <div class="post-date">Added on: <span class="dynamic-date"></span></div>
 
             <div class="votes">12 votes</div>
             <div class="post-content">
@@ -278,9 +278,50 @@
                     <!-- Text -->
                 <p>Additional text content...</p>
                 <div class="tags">
-                    <span class="tag highlight-tag">Tag 1</span>
-                    <span class="tag highlight-tag">Tag 2</span>
-                    <span class="tag highlight-tag">Tag 3</span>
+                    <span class="tag highlight-tag">R</span>
+                    <span class="tag highlight-tag">Regression</span>
+                    <span class="tag highlight-tag">linearregression</span>
+                </div>
+
+            </div>
+            <button class="expand-button">
+                <i class="fas fa-expand expand-icon"></i>
+            </button>
+        </div>
+
+        <div class="post" data-upload-date="2023-08-12">
+            <div class="post-date">Added on: <span class="dynamic-date"></span></div>
+
+            <div class="votes">15 votes</div>
+            <div class="post-content">
+                <h2>Issue 3 in Selenium in python</h2>
+                <p>Post content goes here...</p>
+
+                    <!-- Code Block -->
+                <pre><code>
+                    def create_interval_list():
+                    data_collection_period = int(configs.get("data-collection-period-in-weeks").data)
+                    my_date = datetime.date.today()
+                    year, week_num, day_of_week = my_date.isocalendar()
+                    interval_list = []
+                    while data_collection_period > 0:
+                    interval_list.append(str(year) + (str(week_num) if week_num > 9 else "0" + str(week_num)))
+                    if week_num == 1:
+                    year = year - 1
+                    week_num = 52
+                    else:
+                    week_num = week_num - 1
+                    data_collection_period = data_collection_period - 1
+                    return interval_list
+                </code></pre>
+
+                <p>More text about the code goes here...</p>
+
+                    <!-- Text -->
+                <p>Additional text content...</p>
+                <div class="tags">
+                    <span class="tag highlight-tag">python</span>
+                    <span class="tag highlight-tag">selenium</span>
                 </div>
 
             </div>
@@ -289,6 +330,8 @@
             </button>
         </div>
     </div>
+
+      <script src="../../assets/javascripts/userhome.js"></script>
 </body>
 }
 

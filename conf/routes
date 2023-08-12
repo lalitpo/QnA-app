@@ -26,7 +26,7 @@ GET     /validateLike               controllers.HomeController.validateLike(post
 
 GET     /Share                      controllers.HomeController.Share(postID)
 
-GET     /goToSharingPage            controllers.HomeController.goToSharingPage
+GET     /addPost            controllers.HomeController.addPost
 GET     /createPost                 controllers.HomeController.createPost(text, hashtag, img)
 GET     /removePost                 controllers.HomeController.removePost(PostID)
 

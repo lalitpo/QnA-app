@@ -93,8 +93,8 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
       Ok(views.html.home(posts, returnList))
     } getOrElse(Redirect(routes.HomeController.userHome).withNewSession)
   }
-  def goToSharingPage: Action[AnyContent] = Action {
-    Ok(views.html.NewPost())
+  def addPost(): Action[AnyContent] = Action {
+    Ok(views.html.AddPost())
   }
   def createPost(text: String, hashtag: String, img: String): Action[AnyContent] = Action { implicit request =>
     val username = request.session.get("username")

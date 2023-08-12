@@ -4,36 +4,6 @@ function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
 
-    document.addEventListener("DOMContentLoaded", function() {
-    const sortingSelect = document.getElementById("sorting");
-    const postsContainer = document.getElementById("posts-container");
-
-    sortingSelect.addEventListener("change", function() {
-    const sortingCriteria = sortingSelect.value;
-    sortPosts(postsContainer, sortingCriteria);
-});
-
-    function sortPosts(container, criteria) {
-    const posts = Array.from(container.getElementsByClassName("post"));
-
-    posts.sort((a, b) => {
-    if (criteria === "date") {
-    const dateA = new Date(a.dataset.uploadDate);
-    const dateB = new Date(b.dataset.uploadDate);
-    return dateB - dateA;
-} else if (criteria === "votes") {
-    const votesA = parseInt(a.querySelector(".votes").textContent);
-    const votesB = parseInt(b.querySelector(".votes").textContent);
-    return votesB - votesA;
-}
-});
-
-    posts.forEach(post => {
-    container.appendChild(post);
-});
-}
-});
-
 function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
