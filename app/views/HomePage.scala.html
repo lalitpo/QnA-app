@@ -1,0 +1,151 @@
+@()
+
+    @main("login") {
+        <head>
+            <title>Login or Signup</title>
+            <style>
+                    body {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
+                        margin: 0;
+                        background-color: #8e8383;
+                        font-family: Arial, sans-serif;
+                    }
+
+                    .center-container {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                    }
+
+                    .tabs-container {
+                        display: flex;
+                        justify-content: center;
+                        margin-bottom: 20px;
+                    }
+
+                    .tab {
+                        padding: 10px 20px;
+                        background-color: #b7a7a7;
+                        border: 1px solid #aaa;
+                        border-radius: 4px 4px 0 0;
+                        cursor: pointer;
+                        transition: background-color 0.3s ease-in-out;
+                    }
+
+                    .tab:hover {
+                        background-color: #ccc;
+                    }
+
+                    .active-tab {
+                        background-color: #27d80f;
+                        border-bottom-color: #1d530e;
+                    }
+
+                    .container {
+                        background-color: #98ce75;
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+                    }
+
+                    h2 {
+                        text-align: center;
+                    }
+
+                    form {
+                        text-align: center;
+                    }
+
+                    label {
+                        display: block;
+                        margin-bottom: 8px;
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 10px;
+                        margin-bottom: 10px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                    }
+
+                    button {
+                        background-color: #4CAF50;
+                        color: #fff;
+                        border: none;
+                        border-radius: 4px;
+                        padding: 12px 20px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        transition: background-color 0.3s ease-in-out;
+                    }
+
+                    button:hover {
+                        background-color: #45a049;
+                    }
+            </style>
+        </head>
+        <body>
+            <div class="center-container">
+            <div class="tabs-container">
+                <div class="tab active-tab">Login</div>
+                <div class="tab">Signup</div>
+            </div>
+
+            <div class="container" id="login">
+                <h2>Login</h2>
+                <form action="signIn" method="get">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter Username"  name="username" required>
+                    <br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter Password" name="password" required>
+                    <br>
+                    <button type="submit">Login</button>
+                </form>
+            </div>
+
+            <div class="container" id="signup" style="display: none;">
+                <h2>Signup</h2>
+                <form action="signUp" method="get">
+                    <label for="signupName">Name:</label>
+                    <input type="text" id="signupName" placeholder="Enter Your Name"  name="signupName" required>
+                    <br>
+                    <label for="signupEmail">Email:</label>
+                    <input type="email" id="signupEmail" placeholder="Enter Email"  name="signupEmail" required>
+                    <br>
+                    <label for="signupPassword">Password:</label>
+                    <input type="password" id="signupPassword" placeholder="Enter Password"   name="signupPassword" required>
+                    <br>
+                    <button type="submit">Signup</button>
+                </form>
+            </div>
+            </div>
+            <script>
+                    const loginTab = document.querySelector('.tab:nth-child(1)');
+                    const signupTab = document.querySelector('.tab:nth-child(2)');
+                    const loginContainer = document.getElementById('login');
+                    const signupContainer = document.getElementById('signup');
+
+                    loginTab.addEventListener('click', () => {
+                        loginTab.classList.add('active-tab');
+                        signupTab.classList.remove('active-tab');
+                        loginContainer.style.display = 'block';
+                        signupContainer.style.display = 'none';
+                    });
+
+                    signupTab.addEventListener('click', () => {
+                        signupTab.classList.add('active-tab');
+                        loginTab.classList.remove('active-tab');
+                        signupContainer.style.display = 'block';
+                        loginContainer.style.display = 'none';
+                    });
+            </script>
+        </body>
+    }

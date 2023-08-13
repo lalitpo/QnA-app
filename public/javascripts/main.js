@@ -3,7 +3,6 @@ toggle between hiding and showing the dropdown content */
 function myFunction() {
     document.getElementById("myDropdown").classList.toggle("show");
 }
-
 function filterFunction() {
     var input, filter, ul, li, a, i;
     input = document.getElementById("myInput");
@@ -94,19 +93,3 @@ function closeAllSelect(elmnt) {
         }
     }
 }
-/*if the user clicks anywhere outside the select box,
-then close all select boxes:*/
-document
-    .getElementById('target')
-    .addEventListener('change', function () {
-        'use strict';
-        var vis = document.querySelector('.vis'),
-            target = document.getElementById(this.value);
-        if (vis !== null) {
-            vis.className = 'inv';
-        }
-        if (target !== null ) {
-            target.className = 'vis';
-        }
-    });
-document.addEventListener("click", closeAllSelect);

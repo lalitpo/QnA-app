@@ -6,32 +6,41 @@ import models.user.users
 import scala.collection.mutable.ListBuffer
 import scala.concurrent.duration.DurationInt
 
-case class post(id: Int, username: String, date: DateTime, text: String, var comments: ListBuffer[Int], var likes: Int,
-                var share: Int, hashtag: String, commentOrNot: Int, img: String)
+case class post(postId: Int,
+                username: String,
+                date: DateTime,
+                title: String,
+                textPart: String,
+                codePart: String,
+                var answers: ListBuffer[String],
+                var likes: Int,
+                var dislikes: Int,
+                tags: ListBuffer[String])
 
 object post {
 
   val datenow: DateTime = DateTime.now
 
   var posts: Set[post] = Set(
-    post(1, "Lalit Poddar", datenow.-(100229000), "Listen to my new music everyone :)", ListBuffer(2,3), 10, 0, "#Music", 0, "avatar.png"),
-    post(2, "Shrek", datenow.-(2423422052L), "Nice", ListBuffer(), 0, 0, "#Comment", 1, "NO IMAGE"),
-    post(3, "Peter Griffin", datenow.-(425254292), "Ha Ha Ha", ListBuffer(), 0, 0, "#Comment", 1, "NO IMAGE"),
-    post(4, "Ardavan_Khalij", datenow.-(76254233), "Thanks for your support", ListBuffer(), 0, 0, "#Thank", 0, "NO IMAGE"),
-    post(5, "Severus_Snap", datenow.-(99225338), "Damn Gryffindor", ListBuffer(6), 2, 0, "#Magic", 0, "NO IMAGE"),
-    post(6, "Harry_Potter", datenow.-(99225438), "Damn Gryffindor", ListBuffer(), 0, 0, "#Comment", 1, "NO IMAGE"))
+    post(1, "lalitpo", datenow.-(100229000), "Issue 1", "Issue in Printing 1", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the first answer.", "Here's another answer."), 9, 0, ListBuffer("beautifulsoup", "scala")),
+    post(2, "lalitpod", datenow.-(2423422052L), "Issue 2", "Issue in Printing 2", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the second answer.", "Here's another answer."), 6, 0, ListBuffer("programming", "scala")),
+    post(3, "lalitpod09", datenow.-(425254292), "Issue 3", "Issue in Printing 3", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the third answer.", "Here's another answer."), 10, 2, ListBuffer("R", "jenkins")),
+    post(4, "achintjn", datenow.-(76254233), "Issue 4", "Issue in Printing 4", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the fourth answer.", "Here's another answer."), 5, 0, ListBuffer("selenium", "scala")),
+    post(5, "alex", datenow.-(99225338), "Issue 5", "Issue in Printing 5", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the fifth answer.", "Here's another answer."), 4, 1, ListBuffer("python","bootstrap")),
+    post(6, "paulina", datenow.-(99225438), "Issue 6", "Issue in Printing 6", "println(\\\"Hello, Scala!\\\")",
+      ListBuffer("This is the sixth answer.", "Here's another answer."), 8, 0, ListBuffer("webscraping", "python")))
 
-  def findAllSortedByDate = posts.toList.sortBy(_.date)(Ordering[DateTime].reverse)
-  def findAllSortedByLikes = posts.toList.sortBy(_.likes)(Ordering[Int].reverse)
-  def findNotComments = posts.toList.filterNot(_.commentOrNot == 1).sortBy(_.date)(Ordering[DateTime].reverse)
-  def findNotComments2 = posts.toList.filterNot(_.commentOrNot == 1).sortBy(_.likes)(Ordering[Int].reverse)
-  def findComments = posts.toList.filterNot(_.commentOrNot == 0).sortBy(_.date)(Ordering[DateTime].reverse)
-  def findComments2 = posts.toList.filterNot(_.commentOrNot == 0).sortBy(_.likes)(Ordering[Int].reverse)
+  def findAllSortedByDate: List[post] = posts.toList.sortBy(_.date)(Ordering[DateTime].reverse)
 
-  def createPost(newPost: post) = {
+  def addPost(newPost: post): Unit = {
     posts = posts + newPost
   }
-  def removePost(Post: post) ={
+  def deletePost(Post: post): Unit ={
     posts = posts - Post
   }
 }

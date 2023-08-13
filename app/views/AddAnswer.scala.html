@@ -1,4 +1,4 @@
-@()
+@(username: String, id: String)(implicit flash : Flash)
 
 @main("addAnswer") {
     <style>
@@ -10,7 +10,7 @@
                 margin: 0;
             }
 
-            .container {
+            .answer-container {
                 text-align: center;
                 padding: 20px;
                 border: 1px solid #ccc;
@@ -27,17 +27,21 @@
 
     </style>
     <div>
-        <form method="get" action="addAnswer">
-            <div class="container">
+        <form id="answerForm" method="get" action="addAnswer">
+            <div class="answer-container">
                 <h1>Add your Answer</h1>
 
                 <label for="textPart"><b>Text-part of the Answer</b></label>
-                <textarea placeholder="Enter the details about the Answer" name="textPart" required></textarea>
+                <label>
+                    <textarea placeholder="Enter the details about the Answer" name="textPart" required></textarea>
+                </label>
 
-                <label for="text"><b>Code-part of the Answer</b></label>
-                <textarea placeholder="Enter the code of the answer" name="codePart" required></textarea>
+                <label for="codePart"><b>Code-part of the Answer</b></label>
+                <label>
+                    <textarea placeholder="Enter the code of the answer" name="codePart" required></textarea>
+                </label>
 
-                <button type="submit">Submit</button>
+                <button type="submit" id="submitAnswer">Submit</button>
                 <button type="button">Cancel</button>
 
             </div>

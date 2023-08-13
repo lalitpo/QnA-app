@@ -1,0 +1,64 @@
+@(allPosts: List[post])(implicit flash : Flash, request: RequestHeader)
+
+@main("UserHome") {
+<div class="header">
+  <head>
+      <title>Published Posts</title>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="logout">Log Out</a> |
+      <a href="addPost">Add Post</a>
+    </div>
+      <div class="center-container">
+        <div class="search-box">
+            <input type="text" placeholder="Search by tags...">
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="posts-container">
+
+            <div class="sort-buttons">
+                <button id="sortByDate">Date</button>
+                <button id="sortByVotes">Votes</button>
+            </div>
+            @for(post <- allPosts) {
+                  <div class="post" data-upload-date="@post.date.toString">
+                      <div class="post-date">Added on: <span class="dynamic-date"></span></div>
+                      <div class="votes">
+                          <button class="vote-button up-vote"><i class="fas fa-caret-up"></i></button>
+                          <span class="vote-count">@post.likes</span>
+                          <button class="vote-button down-vote"><i class="fas fa-caret-down"></i></button>
+                      </div>
+
+                      <div class="post-content">
+                      <h2>@post.title</h2>
+                      <p>@post.textPart</p>
+                          <div class="code-section">
+                            <pre><code>
+                            @post.codePart
+                            </code></pre>
+                          </div>
+
+                      <div class="tags">
+                        @for(tag <- post.tags) {
+                            <span class="tag highlight-tag">@tag</span>
+                        }
+                      </div>
+                      <br>
+                      <div class="likes-dislikes">
+                          Dislikes: @post.dislikes
+                      </div>
+                  </div>
+
+                      <div class="expand-button">
+                          <a href="@routes.HomeController.postDetails(post.postId)">
+                              <i class="fas fa-expand"></i>
+                          </a>
+                      </div>
+              </div>
+          }
+      </div>
+      </div>
+    </body>
+</div>
+}

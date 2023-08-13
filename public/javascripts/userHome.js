@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    const defaultSortingCriteria = "date";
     const dynamicDateElements = document.querySelectorAll(".dynamic-date");
 
     dynamicDateElements.forEach(element => {
@@ -13,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const sortingSelect = document.getElementById("sorting");
     const postsContainer = document.querySelector('.posts-container');
+    sortingSelect.value = defaultSortingCriteria;
 
+    sortPosts(postsContainer, defaultSortingCriteria);
     sortingSelect.addEventListener("change", function() {
         const sortingCriteria = sortingSelect.value;
         sortPosts(postsContainer, sortingCriteria);
